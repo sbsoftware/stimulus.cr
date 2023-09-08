@@ -9,7 +9,7 @@ class Stimulus::Controller < JsClass
   macro values(*names)
     {% for name in names %}
       def self.{{name.id}}_value(value)
-        Value.new(controller_name, {{name.id.stringify.underscore.gsub(/_/, "-")}}, value)
+        Stimulus::Value.new(controller_name, {{name.id.stringify.underscore.gsub(/_/, "-")}}, value)
       end
     {% end %}
 
@@ -19,7 +19,7 @@ class Stimulus::Controller < JsClass
   macro targets(*names)
     {% for name in names %}
       def self.{{name.id}}_target
-        Target.new(controller_name, {{name.id.stringify.camelcase(lower: true)}})
+        Stimulus::Target.new(controller_name, {{name.id.stringify.camelcase(lower: true)}})
       end
     {% end %}
 
@@ -28,7 +28,7 @@ class Stimulus::Controller < JsClass
 
   macro action(name, &blk)
     def self.{{name.id}}_action(event)
-      Action.new(event, controller_name, {{name.id.stringify}})
+      Stimulus::Action.new(event, controller_name, {{name.id.stringify}})
     end
 
     js_method {{name}} {{blk}}
