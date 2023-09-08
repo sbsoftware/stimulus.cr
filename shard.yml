@@ -1,0 +1,17 @@
+name: stimulus
+version: 0.1.0
+
+authors:
+  - Stefan Bilharz <stefan@sbsoftware.de>
+
+crystal: 1.9.2
+
+license: MIT
+
+dependencies:
+  js:
+    path: ../js_shard
+
+development_dependencies:
+  to_html:
+    github: sbsoftware/to_html.cr
