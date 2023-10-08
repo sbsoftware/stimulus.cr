@@ -10,7 +10,7 @@ license: MIT
 
 dependencies:
   js:
-    path: ../js_shard
+    github: sbsoftware/js.cr
 
 development_dependencies:
   to_html:

@@ -3,7 +3,7 @@ require "./value"
 require "./target"
 require "./action"
 
-class Stimulus::Controller < JsClass
+class Stimulus::Controller < JS::Class
   js_extends Controller
 
   macro values(*names)
