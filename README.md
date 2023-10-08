@@ -1,6 +1,6 @@
 # stimulus
 
-TODO: Write a description here
+Write [Stimulus](https://stimulus.hotwired.dev/) controllers in Crystal. Based on [js.cr](https://github.com/sbsoftware/js.cr), designed for [compatibility](#compatibility-with-to_htmlcr) with [to_html.cr](https://github.com/sbsoftware/to_html.cr).
 
 ## Installation
 
@@ -9,7 +9,7 @@ TODO: Write a description here
    ```yaml
    dependencies:
      stimulus:
-       github: your-github-user/stimulus.cr
+       github: sbsoftware/stimulus.cr
    ```
 
 2. Run `shards install`
@@ -20,20 +20,47 @@ TODO: Write a description here
 require "stimulus"
 ```
 
-TODO: Write usage instructions here
+### Defining Controllers
 
-## Development
+You can define `values` and `targets` once. As `Stimulus::Controller`s are just [JS::Class](https://github.com/sbsoftware/js.cr#javascript-classes)es, you can add `js_method`s as much as you want - but if you want to reference them as controller actions in your Crystal code or templates, use the `action` macro.
 
-TODO: Write development instructions here
+```crystal
+class LogController < Stimulus::Controller
+  values :message, :css_class
+  targets :element
 
-## Contributing
+  js_method :connect do
+    console.log(this.message)
+  end
 
-1. Fork it (<https://github.com/your-github-user/stimulus.cr/fork>)
-2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create a new Pull Request
+  action :do_it do
+    this.elementTarget.classList.toggle(this.cssClassValue)
+  end
+end
+```
 
-## Contributors
+### Referencing Controllers
 
-- [Stefan Bilharz](https://github.com/your-github-user) - creator and maintainer
+All your `values`, `targets` and `action`s can be referenced via class methods of the controller:
+
+```ecr
+<div data-controller="<%= LogController.controller_name %> data-log-message-value="Hello World!">
+  <div data-log-target="<%= LogController.element_target.target_name %>">Test!</div>
+  <div data-action="click-><%= LogController.controller_name %>#<%= LogController.do_it_action.action_name %>">Go!</div>
+</div>
+```
+
+### Compatibility with `to_html.cr`
+
+When using [to_html.cr](https://github.com/sbsoftware/to_html.cr), things get even shorter. The controller and its value, target or action objects know how to fit into an HTML element as an attribute.
+
+```crystal
+div LogController, LogController.message_value("Hello World!") do
+  div LogController.element_target do
+    "Test!"
+  end
+  div LogController.do_it_action("click") do
+    "Go!"
+  end
+end
+```
