@@ -30,7 +30,7 @@ class LogController < Stimulus::Controller
   targets :element
 
   js_method :connect do
-    console.log(this.message)
+    console.log(this.messageValue)
   end
 
   action :do_it do
