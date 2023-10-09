@@ -44,7 +44,7 @@ end
 All your `values`, `targets` and `action`s can be referenced via class methods of the controller:
 
 ```ecr
-<div data-controller="<%= LogController.controller_name %> data-log-message-value="Hello World!">
+<div data-controller="<%= LogController.controller_name %> data-log-message-value="Hello World!" data-log-css-class-value="my-class">
   <div data-log-target="<%= LogController.element_target.target_name %>">Test!</div>
   <div data-action="click-><%= LogController.controller_name %>#<%= LogController.do_it_action.action_name %>">Go!</div>
 </div>
@@ -55,7 +55,7 @@ All your `values`, `targets` and `action`s can be referenced via class methods o
 When using [to_html.cr](https://github.com/sbsoftware/to_html.cr), things get even shorter. The controller and its value, target or action objects know how to fit into an HTML element as an attribute.
 
 ```crystal
-div LogController, LogController.message_value("Hello World!") do
+div LogController, LogController.message_value("Hello World!"), LogController.css_class_value("my-class") do
   div LogController.element_target do
     "Test!"
   end
