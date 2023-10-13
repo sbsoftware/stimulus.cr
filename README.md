@@ -39,6 +39,20 @@ class LogController < Stimulus::Controller
 end
 ```
 
+### Printing Controllers
+
+Just use `.to_js` to print the JS code of your controller where your want to have it.
+
+```ecr
+<html>
+  <head>
+    <script>
+      <%= LogController.to_js %>
+    </script>
+  </head>
+</html>
+```
+
 ### Referencing Controllers
 
 All your `values`, `targets` and `action`s can be referenced via class methods of the controller:
