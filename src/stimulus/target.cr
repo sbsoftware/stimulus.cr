@@ -6,6 +6,17 @@ class Stimulus::Target
   end
 
   def to_html_attrs(_tag, attrs)
-    attrs["data-#{controller_name}-target"] = target_name
+    attrs[attr_name] = target_name
+  end
+
+  def to_s(io)
+    io << attr_name
+    io << "=\""
+    io << target_name
+    io << "\""
+  end
+
+  def attr_name
+    "data-#{controller_name}-target"
   end
 end

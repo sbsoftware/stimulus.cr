@@ -55,12 +55,19 @@ Just use `.to_js` to print the JS code of your controller where your want to hav
 
 ### Referencing Controllers
 
-All your `values`, `targets` and `action`s can be referenced via class methods of the controller:
+All your `values`, `targets` and `action`s can be referenced via class methods of the controller. Their `#to_s` methods present them as the HTML attribute strings they need to be:
 
 ```ecr
-<div data-controller="<%= LogController.controller_name %> data-log-message-value="Hello World!" data-log-css-class-value="my-class">
-  <div data-log-target="<%= LogController.element_target.target_name %>">Test!</div>
-  <div data-action="click-><%= LogController.controller_name %>#<%= LogController.do_it_action.action_name %>">Go!</div>
+<div <%= LogController %> <%= LogController.message_value("Hello World!") <%= LogController.css_class_value("my_class") %>>
+  <div <%= LogController.element_target %>>Test!</div>
+  <div <%= LogController.do_it_action("click") %>>Go!</div>
+</div>
+```
+=>
+```html
+<div data-controller="log" data-log-message-value="Hello World!" data-log-css-class-value="my_class">
+  <div data-log-target="element">Test!</div>
+  <div data-action="click->log#do_it">Go!</div>
 </div>
 ```
 

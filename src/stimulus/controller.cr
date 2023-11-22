@@ -4,6 +4,8 @@ require "./target"
 require "./action"
 
 class Stimulus::Controller < JS::Class
+  ATTR_NAME = "data-controller"
+
   js_extends Controller
 
   macro values(*names)
@@ -39,6 +41,13 @@ class Stimulus::Controller < JS::Class
   end
 
   def self.to_html_attrs(_tag, attrs)
-    attrs["data-controller"] = controller_name
+    attrs[ATTR_NAME] = controller_name
+  end
+
+  def self.to_s(io)
+    io << ATTR_NAME
+    io << "=\""
+    io << controller_name
+    io << "\""
   end
 end
