@@ -55,7 +55,7 @@ Just use `.to_js` to print the JS code of your controller where your want to hav
 
 ### Referencing Controllers
 
-All your `values`, `targets` and `action`s can be referenced via class methods of the controller. Their `#to_s` methods present them as the HTML attribute strings they need to be:
+All your `values`, `targets` and `actions` can be referenced via class methods of the controller. Their `#to_s` methods present them as the HTML attribute strings they need to be:
 
 ```ecr
 <div <%= LogController %> <%= LogController.message_value("Hello World!") <%= LogController.css_class_value("my_class") %>>
@@ -73,7 +73,7 @@ All your `values`, `targets` and `action`s can be referenced via class methods o
 
 ### Compatibility with `to_html.cr`
 
-When using [to_html.cr](https://github.com/sbsoftware/to_html.cr), things get even shorter. The controller and its value, target or action objects know how to fit into an HTML element as an attribute.
+When using [to_html.cr](https://github.com/sbsoftware/to_html.cr), things get even more comfortable. The controller and its value, target or action objects know how to fit into an HTML element as an attribute. The `to_html` attribute interface even manages adding multiple `controllers`/`values`/`targets`/`actions` to the same element, which would be cumbersome with plain ECR.
 
 ```crystal
 div LogController, LogController.message_value("Hello World!"), LogController.css_class_value("my-class") do
