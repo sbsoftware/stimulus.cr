@@ -17,7 +17,7 @@ module Stimulus::Integration::ToHtmlSpec
         div MyController.the_item_target do
           "Test"
         end
-        div MyController.do_it_action("click") do
+        div MyController.param("message", "Hello World!"), MyController.do_it_action("click") do
           "Do it!"
         end
       end
@@ -29,7 +29,7 @@ module Stimulus::Integration::ToHtmlSpec
       expected = <<-HTML.squish
       <div data-controller="my" data-my-css-class-value="the-class">
         <div data-my-target="theItem">Test</div>
-        <div data-action="click->my#do_it">Do it!</div>
+        <div data-my-message-param="Hello World!" data-action="click->my#do_it">Do it!</div>
       </div>
       HTML
 

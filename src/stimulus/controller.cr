@@ -2,6 +2,7 @@ require "js"
 require "./value"
 require "./target"
 require "./action"
+require "./param"
 
 class Stimulus::Controller < JS::Class
   ATTR_NAME = "data-controller"
@@ -34,6 +35,10 @@ class Stimulus::Controller < JS::Class
     end
 
     js_method {{name}} {{blk}}
+  end
+
+  def self.param(name, value)
+    Stimulus::Param.new(controller_name, name, value)
   end
 
   def self.controller_name

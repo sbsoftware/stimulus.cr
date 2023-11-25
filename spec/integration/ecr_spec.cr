@@ -6,7 +6,8 @@ module Stimulus::Integration::ECRSpec
     values :css_class
     targets :the_item
 
-    action :do_it do
+    action :do_it do |event|
+      console.log(event.params.message)
       this.theItemTarget.classList.toggle(this.cssClassValue)
     end
   end
@@ -20,7 +21,7 @@ module Stimulus::Integration::ECRSpec
       expected = <<-HTML
       <div data-controller="my" data-my-css-class-value="the-class">
         <div data-my-target="theItem">Test</div>
-        <div data-action="click->my#do_it">Do it!</div>
+        <div data-my-message-param="Hello World!" data-action="click->my#do_it">Do it!</div>
       </div>
 
       HTML

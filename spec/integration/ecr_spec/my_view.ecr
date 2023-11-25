@@ -1,4 +1,4 @@
 <div <%= MyController %> <%= MyController.css_class_value("the-class") %>>
   <div <%= MyController.the_item_target %>>Test</div>
-  <div <%= MyController.do_it_action("click") %>>Do it!</div>
+  <div <%= MyController.param("message", "Hello World!") %> <%= MyController.do_it_action("click") %>>Do it!</div>
 </div>
