@@ -2,7 +2,7 @@ require "./spec_helper"
 
 module Stimulus::ControllerSpec
   class MyController < Stimulus::Controller
-    values :css_class
+    values css_class: String, interval: Number, params: Object, decode: Boolean, args: Array
     targets :the_item
 
     js_method connect do
@@ -23,7 +23,7 @@ module Stimulus::ControllerSpec
       it "should return the correct JS code" do
         expected = <<-JS.squish
         class MyController extends Controller {
-          static values = ["cssClass"];
+          static values = {cssClass: String, interval: Number, params: Object, decode: Boolean, args: Array};
           static targets = ["theItem"];
 
           connect() {

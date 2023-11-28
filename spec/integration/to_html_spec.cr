@@ -3,7 +3,7 @@ require "to_html"
 
 module Stimulus::Integration::ToHtmlSpec
   class MyController < Stimulus::Controller
-    values :css_class
+    values css_class: String
     targets :the_item
 
     action :do_it do

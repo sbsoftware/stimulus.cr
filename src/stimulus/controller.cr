@@ -9,14 +9,14 @@ class Stimulus::Controller < JS::Class
 
   js_extends Controller
 
-  macro values(*names)
+  macro values(**names)
     {% for name in names %}
       def self.{{name.id}}_value(value)
         Stimulus::Value.new(controller_name, {{name.id.stringify.underscore.gsub(/_/, "-")}}, value)
       end
     {% end %}
 
-    static values = [{{names.map(&.id).map(&.stringify).map(&.camelcase(lower: true)).splat}}]
+    static values = { {{names.map { |n, k| "#{n.id.stringify.camelcase(lower: true)}: #{k}".id }.splat}} }
   end
 
   macro targets(*names)

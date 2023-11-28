@@ -3,7 +3,7 @@ require "ecr"
 
 module Stimulus::Integration::ECRSpec
   class MyController < Stimulus::Controller
-    values :css_class
+    values css_class: String
     targets :the_item
 
     action :do_it do |event|
