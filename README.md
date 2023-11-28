@@ -26,7 +26,7 @@ You can define `values` and `targets` once. As `Stimulus::Controller`s are just 
 
 ```crystal
 class LogController < Stimulus::Controller
-  values :message, :css_class
+  values message: String, css_class: String
   targets :element
 
   js_method :connect do
