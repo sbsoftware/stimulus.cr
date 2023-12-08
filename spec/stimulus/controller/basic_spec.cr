@@ -1,6 +1,6 @@
-require "./spec_helper"
+require "../../spec_helper"
 
-module Stimulus::ControllerSpec
+module Stimulus::Controller::BasicSpec
   class MyController < Stimulus::Controller
     values css_class: String, interval: Number, params: Object, decode: Boolean, args: Array
     targets :the_item
