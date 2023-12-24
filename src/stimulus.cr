@@ -1,5 +1,5 @@
 require "./stimulus/controller"
 
 module Stimulus
-  VERSION = "0.3.0"
+  VERSION = "0.4.0"
 end
