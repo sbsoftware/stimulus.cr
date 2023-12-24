@@ -42,7 +42,9 @@ class Stimulus::Controller < JS::Class
   end
 
   def self.controller_name
-    name.split("::").last.chomp("Controller").underscore
+    name.chomp("Controller").split("::").map do |part|
+      part.underscore.gsub(/_/, "-")
+    end.join("--")
   end
 
   def self.to_html_attrs(_tag, attrs)
