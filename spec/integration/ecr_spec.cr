@@ -19,9 +19,9 @@ module Stimulus::Integration::ECRSpec
   describe "MyView.to_s" do
     it "should return the correct HTML" do
       expected = <<-HTML
-      <div data-controller="my" data-my-css-class-value="the-class">
-        <div data-my-target="theItem">Test</div>
-        <div data-my-message-param="Hello World!" data-action="click->my#do_it">Do it!</div>
+      <div data-controller="stimulus--integration--ecr-spec--my" data-stimulus--integration--ecr-spec--my-css-class-value="the-class">
+        <div data-stimulus--integration--ecr-spec--my-target="theItem">Test</div>
+        <div data-stimulus--integration--ecr-spec--my-message-param="Hello World!" data-action="click->stimulus--integration--ecr-spec--my#do_it">Do it!</div>
       </div>
 
       HTML

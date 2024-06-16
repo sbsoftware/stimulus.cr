@@ -22,7 +22,7 @@ module Stimulus::Controller::BasicSpec
     describe ".to_js" do
       it "should return the correct JS code" do
         expected = <<-JS.squish
-        class MyController extends Controller {
+        class Stimulus_Controller_BasicSpec_MyController extends Controller {
           static values = {cssClass: String, interval: Number, params: Object, decode: Boolean, args: Array};
           static targets = ["theItem"];
 

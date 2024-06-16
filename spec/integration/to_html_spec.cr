@@ -27,9 +27,9 @@ module Stimulus::Integration::ToHtmlSpec
   describe "MyView.to_html" do
     it "should return the correct HTML" do
       expected = <<-HTML.squish
-      <div data-controller="my" data-my-css-class-value="the-class">
-        <div data-my-target="theItem">Test</div>
-        <div data-my-message-param="Hello World!" data-action="click->my#do_it">Do it!</div>
+      <div data-controller="stimulus--integration--to-html-spec--my" data-stimulus--integration--to-html-spec--my-css-class-value="the-class">
+        <div data-stimulus--integration--to-html-spec--my-target="theItem">Test</div>
+        <div data-stimulus--integration--to-html-spec--my-message-param="Hello World!" data-action="click->stimulus--integration--to-html-spec--my#do_it">Do it!</div>
       </div>
       HTML
 
