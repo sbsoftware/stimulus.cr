@@ -11,7 +11,7 @@ license: MIT
 dependencies:
   js:
     github: sbsoftware/js.cr
-    version: ">= 1.2.2"
+    version: ">= 1.3.0"
 
 development_dependencies:
   to_html:

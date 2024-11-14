@@ -2,7 +2,7 @@ require "../../spec_helper"
 
 module Stimulus::Controller::BasicSpec
   class MyController < Stimulus::Controller
-    values css_class: String, interval: Number, params: Object, decode: Boolean, args: Array
+    values css_class: String, interval: Number, params: Object, decode: Bool, args: Array
     targets :the_item
 
     js_method connect do

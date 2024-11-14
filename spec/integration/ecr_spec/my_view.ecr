@@ -1,4 +1,5 @@
-<div <%= MyController %> <%= MyController.css_class_value("the-class") %>>
+<div <%= MyController %> <%= MyController.css_class_value("the-class") %> <%= MyController.other_controller_outlet("#div_id") %>>
+  <div <%= OtherController %> id="div_id"></div>
   <div <%= MyController.the_item_target %>>Test</div>
   <div <%= MyController.param("message", "Hello World!") %> <%= MyController.do_it_action("click") %>>Do it!</div>
 </div>

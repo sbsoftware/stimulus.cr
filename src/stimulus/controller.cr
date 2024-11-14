@@ -3,6 +3,7 @@ require "./value"
 require "./target"
 require "./action"
 require "./param"
+require "./outlet"
 
 class Stimulus::Controller < JS::Class
   ATTR_NAME = "data-controller"
@@ -27,6 +28,16 @@ class Stimulus::Controller < JS::Class
     {% end %}
 
     static targets = [{{names.map(&.id).map(&.stringify).map(&.camelcase(lower: true)).splat}}]
+  end
+
+  macro outlets(*outlet_controllers)
+    {% for outlet_controller in outlet_controllers %}
+      def self.{{outlet_controller.names.last.underscore}}_outlet(selector)
+        ::Stimulus::Outlet.new(self, {{outlet_controller}}, selector)
+      end
+    {% end %}
+
+    static outlets = [{{outlet_controllers.splat}}].map(&.controller_name)
   end
 
   macro action(name, &blk)
