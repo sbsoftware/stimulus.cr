@@ -39,6 +39,39 @@ class LogController < Stimulus::Controller
 end
 ```
 
+### Outlets
+
+The `outlets` macro expects a list of other `Stimulus::Controller`s and provides you a method for each to define the outlet in your template.
+
+```crystal
+class SomeController < Stimulus::Controller
+  action :do_some do
+    console.log("Something!")
+  end
+end
+
+class OtherController < Stimulus::Controller
+end
+
+class MyController < Stimulus::Controller
+  outlets SomeController, OtherController
+
+  action :do_it do
+    this.someOutlet.do_some._call
+  end
+end
+
+class MyView
+  ToHtml.class_template do
+    div SomeController, id: "some_id"
+
+    div MyController, MyController.some_controller_outlet("#some_id"), MyController.do_it_action("click") do
+      "Click me!"
+    end
+  end
+end
+```
+
 ### Printing Controllers
 
 Just use `.to_js` to print the JS code of your controller where your want to have it.
