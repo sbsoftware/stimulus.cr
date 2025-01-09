@@ -1,5 +1,7 @@
 require "./stimulus/controller"
 
-module Stimulus
-  VERSION = "0.4.1"
+macro stimulus_controller(name, &blk)
+  class {{name}} < ::Stimulus::Controller
+    {{blk.body}}
+  end
 end

@@ -2,13 +2,13 @@ require "../spec_helper"
 require "to_html"
 
 module Stimulus::Integration::ToHtmlSpec
-  class OtherController < Stimulus::Controller
+  stimulus_controller OtherController do
     action :do_something do
       this.classList.toggle("test")
     end
   end
 
-  class MyController < Stimulus::Controller
+  stimulus_controller MyController do
     values my_str: String
     targets :the_item
     outlets OtherController

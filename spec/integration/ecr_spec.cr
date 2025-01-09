@@ -2,10 +2,10 @@ require "../spec_helper"
 require "ecr"
 
 module Stimulus::Integration::ECRSpec
-  class OtherController < Stimulus::Controller
+  stimulus_controller OtherController do
   end
 
-  class MyController < Stimulus::Controller
+  stimulus_controller MyController do
     values css_class: String
     targets :the_item
     outlets OtherController
