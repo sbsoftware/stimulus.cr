@@ -5,7 +5,7 @@ module Stimulus::Controller::BasicSpec
     values css_class: String, interval: Number, params: Object, decode: Bool, args: Array
     targets :the_item
 
-    js_method connect do
+    js_method :connect do
       console.log("hooray!")
     end
   end

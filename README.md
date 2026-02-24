@@ -39,6 +39,20 @@ class LogController < Stimulus::Controller
 end
 ```
 
+### Strict mode for actions
+
+`action` forwards named options to the underlying `js_method`, so strict mode can be enabled per action once you use a `js.cr` version that supports strict-mode options:
+
+```crystal
+class LogController < Stimulus::Controller
+  action :do_it, strict: true do
+    this.elementTarget.classList.toggle("is-active")
+  end
+end
+```
+
+See the upstream [js.cr strict-mode documentation](https://github.com/sbsoftware/js.cr) for strict-mode behavior details and available options.
+
 ### Outlets
 
 The `outlets` macro expects a list of other `Stimulus::Controller`s and provides you a method for each to define the outlet in your template.
