@@ -46,7 +46,7 @@ end
 ```crystal
 class LogController < Stimulus::Controller
   action :do_it, strict: true do
-    this.elementTarget.classList.toggle("is-active")
+    console.log("test")
   end
 end
 ```
