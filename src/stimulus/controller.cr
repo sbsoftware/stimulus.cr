@@ -48,8 +48,7 @@ class Stimulus::Controller < JS::Class
     {% if opts.empty? %}
       js_method {{name}} {{blk}}
     {% else %}
-      # Crystal macros can't splat named tuples into macro calls yet.
-      js_method {{name}}, {% for key, value, index in opts %}{{key.id}}: {{value}}{% if index < opts.size - 1 %}, {% end %}{% end %} {{blk}}
+      js_method {{name}}, {{opts.double_splat}} {{blk}}
     {% end %}
   end
 
