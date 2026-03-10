@@ -11,6 +11,17 @@ module Stimulus::Controller::ActionSpec
     end
   end
 
+  class ForwardingController < Stimulus::Controller
+    macro js_method(name, **opts, &blk)
+      def self.forwarded_js_method_opts
+        {{opts}}
+      end
+    end
+
+    action :do_it, strict: true do
+    end
+  end
+
   describe ".to_js" do
     it "should return the correct JS code" do
       expected = <<-JS.squish
@@ -26,6 +37,12 @@ module Stimulus::Controller::ActionSpec
       JS
 
       MyController.to_js.should eq(expected)
+    end
+  end
+
+  describe ".action" do
+    it "forwards named options to js_method" do
+      ForwardingController.forwarded_js_method_opts.should eq({strict: true})
     end
   end
 end

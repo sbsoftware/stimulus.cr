@@ -40,12 +40,16 @@ class Stimulus::Controller < JS::Class
     static outlets = [{{outlet_controllers.splat}}].map(&.controller_name)
   end
 
-  macro action(name, &blk)
+  macro action(name, **opts, &blk)
     def self.{{name.id}}_action(event)
       ::Stimulus::Action.new(event, controller_name, {{name.id.stringify}})
     end
 
-    js_method {{name}} {{blk}}
+    {% if opts.empty? %}
+      js_method {{name}} {{blk}}
+    {% else %}
+      js_method {{name}}, {{opts.double_splat}} {{blk}}
+    {% end %}
   end
 
   def self.param(name, value)
